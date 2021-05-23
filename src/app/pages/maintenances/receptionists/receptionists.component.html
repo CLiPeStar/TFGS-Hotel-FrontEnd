@@ -1,0 +1,97 @@
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search receptionists.."
+          (keyup)="search(txtSearch.value)"
+          #txtSearch
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row animated fadeIn fast" *ngIf="charged">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Charging..</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Wait please</p>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!charged">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-8">
+            <h4 class="card-title">Hotels ({{ receptionists.length }})</h4>
+            <h6 class="card-subtitle">Hotels register in app</h6>
+          </div>
+          <div class="col">
+            <div class="text-right">
+              <a
+                routerLink="/dashboard/receptionist/new"
+                class="btn btn-primary"
+              >
+                <i class="fa fa-vcard-o"></i>
+                New receptionist
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="w100">Photo</th>
+                <th>Name</th>
+                <th class="text-nowrap w100">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let recep of receptionists">
+                <td class="text-center">
+                  <img
+                    (click)="openModal(recep)"
+                    class="avatar cursor"
+                    [src]="recep.img | img: 'receptionists'"
+                  />
+                </td>
+                <td style="vertical-align: inherit">{{ recep.name }}</td>
+                <td
+                  style="vertical-align: inherit"
+                  class="text-nowrap text-center"
+                >
+                  <a
+                    class="cursor"
+                    [routerLink]="['/dashboard/receptionist', recep._id]"
+                    data-toggle="tooltip"
+                    data-original-title="Edit"
+                  >
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    (click)="deleteReceptionist(recep)"
+                    data-toggle="tooltip"
+                    data-original-title="Delete"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--        <button class="btn btn-secondary">Prev</button>-->
+        <!--        &nbsp;-->
+        <!--        <button class="btn btn-secondary">Next</button>-->
+      </div>
+    </div>
+  </div>
+</div>

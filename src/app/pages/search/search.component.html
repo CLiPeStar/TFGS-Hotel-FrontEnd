@@ -1,0 +1,86 @@
+<div class="row animated fadeIn fast">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Users</h3>
+
+        <div class="alert alert-success" role="alert" *ngIf="users.length===0">
+          <p class="mb-0">No users</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><img class="avatar" [src]="user.img|img:'users'" alt="user"></td>
+                <td>{{user.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Receptionists</h3>
+
+        <div class="alert alert-success" role="alert" *ngIf="receptionists.length===0">
+          <p class="mb-0">No receptionists</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recep of receptionists" (click)="openReceptionist(recep)" class="cursor">
+              <td><img class="avatar" [src]="recep.img|img:'receptionists'" alt="user"></td>
+              <td>{{recep.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Hotels</h3>
+
+        <div class="alert alert-success" role="alert" *ngIf="hotels.length===0">
+          <p class="mb-0">No hotels</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let hotel of hotels">
+              <td><img class="hotel-img-4" [src]="hotel.img|img:'hotels'" alt="user"></td>
+              <td>{{hotel.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
